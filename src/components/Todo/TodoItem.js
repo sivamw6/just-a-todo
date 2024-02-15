@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Button from '../Button/Button';
 import './TodoItem.css';
 
-function TodoItem({ todo, onDelete, onEdit }) {
+const TodoItem = ({ todo, onDelete, onEdit }) => {
 
   const [isEditing, setIsEditing] = useState(false)
   const [editedText, setEditedText] = useState(todo.text)
@@ -11,6 +11,7 @@ function TodoItem({ todo, onDelete, onEdit }) {
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked)
   }
+
 
   return (
     <div className="todo-item">
@@ -50,4 +51,4 @@ function TodoItem({ todo, onDelete, onEdit }) {
   )
 }
 
-export default TodoItem;
+export  {TodoItem};

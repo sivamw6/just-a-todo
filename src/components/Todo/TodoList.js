@@ -1,9 +1,9 @@
-import React, { useState} from 'react'
-import TodoItem from './TodoItem'
+import React, { useState } from 'react'
+import { TodoItem } from './TodoItem'
 import Button from './../Button/Button'
 import './TodoList.css'
 
-const TodoList = () => {
+export const TodoList = () => {
 
   const [todos, setTodos] = useState([])
   const [newTodo, setNewTodo] = useState('')
@@ -50,4 +50,3 @@ const TodoList = () => {
   )
 }
 
-export default TodoList
