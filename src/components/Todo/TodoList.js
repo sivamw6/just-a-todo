@@ -1,52 +1,59 @@
-import React, { useState } from 'react'
-import { TodoItem } from './TodoItem'
-import Button from './../Button/Button'
-import './TodoList.css'
+import React, { useState } from "react";
+import { TodoItem } from "./TodoItem";
+import Button from "./../Button/Button";
+import "./TodoList.css";
 
 export const TodoList = () => {
-
-  const [todos, setTodos] = useState([])
-  const [newTodo, setNewTodo] = useState('')
+  const [todos, setTodos] = useState([]);
+  const [newTodo, setNewTodo] = useState("");
 
   // Add
   const handleAddTodo = () => {
-    setTodos([...todos, {id: Date.now(), text:newTodo}])
-    setNewTodo('')
-  }
+    setTodos([...todos, { id: Date.now(), text: newTodo }]);
+    setNewTodo("");
+  };
 
   // Remove
   const handleDelete = (id) => {
-    setTodos(todos.filter(todo => todo.id!==id))
-  }
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
 
   // Edit
   const handleEdit = (id, newText) => {
-    setTodos(todos.map(todo => {
-      if(todo.id === id) {
-        return { ...todo, text:newText}
-      }
-      return todo
-    }))
-  }
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, text: newText };
+        }
+        return todo;
+      })
+    );
+  };
 
-
+  const mimi = 1;
   return (
     <div>
-      <div className='input-container'>
+      <div className="input-container">
         <input
-        type = "text"
-        value = {newTodo}
-        onChange = {(e)=>setNewTodo(e.target.value)}
+          type="text"
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
         />
-        <Button text="＋" onClick={handleAddTodo}/>
-
+        <Button text="＋" onClick={handleAddTodo} />
       </div>
-      { todos.length === 0
-      ? <p>No to-do items yet!</p>
-      : todos.map(todo=>(
-        <TodoItem key={todo.id} todo={todo} onDelete={handleDelete} onEdit={handleEdit}/>
-      ))}
+      {todos.length === 0 ? (
+        <p>No to-do items yet!</p>
+      ) : (
+        todos.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            name={mimi}
+            todo={todo}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+          />
+        ))
+      )}
     </div>
-  )
-}
-
+  );
+};

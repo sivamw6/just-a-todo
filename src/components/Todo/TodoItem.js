@@ -1,17 +1,15 @@
-import React, {useState} from 'react';
-import Button from '../Button/Button';
-import './TodoItem.css';
+import React, { useState } from "react";
+import Button from "../Button/Button";
+import "./TodoItem.css";
 
-const TodoItem = ({ todo, onDelete, onEdit }) => {
-
-  const [isEditing, setIsEditing] = useState(false)
-  const [editedText, setEditedText] = useState(todo.text)
-  const [isChecked, setIsChecked] = useState(false)
+const TodoItem = ({ todo, onDelete, onEdit, name }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedText, setEditedText] = useState(todo.text);
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked)
-  }
-
+    setIsChecked(!isChecked);
+  };
 
   return (
     <div className="todo-item">
@@ -19,36 +17,40 @@ const TodoItem = ({ todo, onDelete, onEdit }) => {
         <input
           type="text"
           value={editedText}
-          onChange={(e)=> setEditedText(e.target.value)}
-
+          onChange={(e) => setEditedText(e.target.value)}
         />
       ) : (
         <div>
           <input
-            type="checkbox" 
+            type="checkbox"
             onChange={handleCheckboxChange}
             checked={isChecked}
           />
-            <span className={isChecked ? ('completed') : ('')}> {todo.text}</span>
-          </div>
+          <span className={isChecked ? "completed" : ""}> {todo.text}</span>
+        </div>
       )}
-      <div className='button-container '>
-      {isEditing ? (
-        <Button text="✔️" onClick={()=>{
-          onEdit(todo.id, editedText)
-          setIsEditing(false)
-        }}
-        />
-      ) : (
-        <Button text="🖊️" onClick={()=>{
-          setIsEditing(true)
-        }}
-        />
-      )}
-      <Button text="✖️" onClick={()=>onDelete(todo.id)} />
+      <div className="button-container ">
+        {isEditing ? (
+          <Button
+            text="✔️"
+            onClick={() => {
+              onEdit(todo.id, editedText);
+              setIsEditing(false);
+            }}
+          />
+        ) : (
+          <Button
+            text="🖊️"
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          />
+        )}
+        <Button text="✖️" onClick={() => onDelete(todo.id)} />
+        <p>{name}</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export  {TodoItem};
+export { TodoItem };
