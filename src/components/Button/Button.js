@@ -1,12 +1,20 @@
-import React from 'react'
-import './Button.css'
+import React from "react";
+import styled from "styled-components";
 
-function Button({onClick, text}) {
+const StyledButton = styled.button`
+  width: 30px;
+  height: 30px;
+  border: none;
+`;
+
+function Button({ onClick, text }) {
   return (
     <div>
-      <button className="button-style" onClick={onClick}>{text}</button>
+      <StyledButton className="button-style" onClick={onClick}>
+        {text}
+      </StyledButton>
     </div>
-  )
+  );
 }
 
-export default Button
+export default Button;
