@@ -1,6 +1,23 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
-import "./TodoItem.css";
+import styled from "styled-components";
+
+const Div = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+`;
+
+const Span = styled.span`
+  text-decoration: ${({ $isChecked }) =>
+    $isChecked ? "line-through" : "none"};
+`;
 
 const TodoItem = ({ todo, onDelete, onEdit, name }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -12,7 +29,7 @@ const TodoItem = ({ todo, onDelete, onEdit, name }) => {
   };
 
   return (
-    <div className="todo-item">
+    <Div>
       {isEditing ? (
         <input
           type="text"
@@ -26,10 +43,10 @@ const TodoItem = ({ todo, onDelete, onEdit, name }) => {
             onChange={handleCheckboxChange}
             checked={isChecked}
           />
-          <span className={isChecked ? "completed" : ""}> {todo.text}</span>
+          <Span $isChecked={isChecked}> {todo.text}</Span>
         </div>
       )}
-      <div className="button-container ">
+      <ButtonContainer>
         {isEditing ? (
           <Button
             text="✔️"
@@ -48,8 +65,8 @@ const TodoItem = ({ todo, onDelete, onEdit, name }) => {
         )}
         <Button text="✖️" onClick={() => onDelete(todo.id)} />
         <p>{name}</p>
-      </div>
-    </div>
+      </ButtonContainer>
+    </Div>
   );
 };
 

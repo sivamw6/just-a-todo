@@ -6,15 +6,11 @@ const StyledButton = styled.button`
   height: 30px;
   border: none;
 `;
-
-function Button({ onClick, text }) {
-  return (
-    <div>
-      <StyledButton className="button-style" onClick={onClick}>
+const Button = ({ onClick, text }: { onClick: () => void, text: string }) => 
+  (   <StyledButton onClick={onClick}>
         {text}
       </StyledButton>
-    </div>
   );
-}
+
 
 export default Button;
